@@ -23,7 +23,7 @@ func (l *listener) onClick(b *button) {
 	fmt.Println("listener on click")
 }
 
-func ExampleQuickstart() {
+func Example() {
 	b := &button{Name: "example"}
 	b.Click() // nothing happens, 0 connections
 
