@@ -15,9 +15,13 @@ A [Godot](https://docs.godotengine.org/en/stable/getting_started/step_by_step/si
 
 Some games that were built with this library (this list is incomplete):
 
+* [Roboden](https://quasilyte.itch.io/roboden)
+* [Assemblox](https://quasilyte.itch.io/assemblox)
 * [Decipherism](https://quasilyte.itch.io/decipherism)
 * [Retrowave City](https://quasilyte.itch.io/retrowave-city)
 * [Autotanks](https://quasilyte.itch.io/autotanks)
+* [Sinecord](https://quasilyte.itch.io/sinecord)
+* [Learn Georgian](https://quasilyte.itch.io/georgian-trainer)
 
 Why bother and use something like this?
 
