@@ -18,6 +18,12 @@ type Event[T any] struct {
 	handlers []eventHandler[T]
 }
 
+// Reset disconnects all connected event listeners (slot functions).
+// After this operation the Event object in its zero-like state, ready to be re-used.
+func (e *Event[T]) Reset() {
+	e.handlers = e.handlers[:0]
+}
+
 // Connect adds an event listener that will be called for every Emit called for this event.
 // When connection is disposed, an associated callback will be unregistered.
 // If this connection should be persistent, pass a nil value as conn.
