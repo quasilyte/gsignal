@@ -24,6 +24,18 @@ func (e *Event[T]) Reset() {
 	e.handlers = e.handlers[:0]
 }
 
+// Forward is a convenience wrapper over connecting to e and calling emit on e2
+// with the same arguments.
+// In other words, this method sets up a forwarding from e to e2.
+// When e does Emit(), e2 would receive it and Emit() as well.
+//
+// The conn argument is used for the underlying Connect() call.
+func (e *Event[T]) Forward(conn connection, e2 *Event[T]) {
+	e.Connect(conn, func(arg T) {
+		e2.Emit(arg)
+	})
+}
+
 // Connect adds an event listener that will be called for every Emit called for this event.
 // When connection is disposed, an associated callback will be unregistered.
 // If this connection should be persistent, pass a nil value as conn.
