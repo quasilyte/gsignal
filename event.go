@@ -73,8 +73,14 @@ func (e *Event[T]) Emit(arg T) {
 	e.handlers = e.handlers[:length]
 }
 
+// IsEmpty is a shorthand for NumConnections==0.
 func (e *Event[T]) IsEmpty() bool {
 	return len(e.handlers) == 0
+}
+
+// NumConnections reports the number of alive event connections.
+func (e *Event[T]) NumConnections() int {
+	return len(e.handlers)
 }
 
 type eventHandler[T any] struct {
