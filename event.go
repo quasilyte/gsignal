@@ -24,6 +24,25 @@ func (e *Event[T]) Reset() {
 	e.handlers = e.handlers[:0]
 }
 
+// Flush makes sure disposed event listeners are removed from the object.
+//
+// Normally, this happens as a part of every Emit, but some use cases
+// may have rare [Emits] and frequent [Connect].
+//
+// Don't call this method unless you're certain that you need it.
+func (e *Event[T]) Flush() {
+	// This method is slightly faster than the self-append alternative.
+	length := 0
+	for _, h := range e.handlers {
+		if h.c != nil && h.c.IsDisposed() {
+			continue
+		}
+		e.handlers[length] = h
+		length++
+	}
+	e.handlers = e.handlers[:length]
+}
+
 // Forward is a convenience wrapper over connecting to e and calling emit on e2
 // with the same arguments.
 // In other words, this method sets up a forwarding from e to e2.
